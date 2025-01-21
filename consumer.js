@@ -15,6 +15,10 @@ async function main() {
         durable: true
     });
 
+    // define quantas mensagens ele vai consumir (usado para nao topar recurso).
+    // neste exemplo ele vai consumir somente 100 mensagens, ele so vai pegar mais após eu ter um ack
+    channel.prefetch(100)
+
     // nesse momento a mensagem vai para o status unacked. Se a aplicacao morre a mensagem volta para o ready
     channel.consume('minha_fila', (data) => {
         console.log(data.content.toString()) // pega a propriedade content dentro do data. Como enviamos um buffer, precisa converter para String
