@@ -13,7 +13,7 @@ async function main() {
 
     // se não existe, cria a fila
     await channel.assertQueue('minha_fila', {
-        durable: true // fila vai persistir no rabbit
+        durable: true // fila e mensagens vao persistir no rabbit
     })
 
     // publicando mensagem na fila
